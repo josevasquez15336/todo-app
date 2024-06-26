@@ -27,7 +27,7 @@ The goal of this project was to develop a reusable MFE that handles todo list ma
 1. **Clone the Repository**
 
    ```bash
-   git clone https://github.com/your-repository/todo-mfe.git
+   git clone https://github.com/josevasquez15336/todo-app.git
    cd todo-mfe
    ```
 
