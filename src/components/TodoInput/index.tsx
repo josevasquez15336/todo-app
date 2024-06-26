@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 
 interface TodoInputProps {
@@ -17,13 +18,10 @@ export const TodoInput: React.FC<TodoInputProps> = ({ addTodo }) => {
 
   return (
     <form onSubmit={handleSubmit} className="form-control">
-      <input
-        type="text"
-        placeholder="Add new todo"
-        value={task}
-        onChange={e => setTask(e.target.value)}
-        className="input input-bordered w-full max-w-xs"
-      />
+      <div className="join">
+        <input  type="text"   value={task}  onChange={e => setTask(e.target.value)} className="input w-full max-w-xs input-bordered join-item" placeholder="Add new todo" />
+        <button type="submit" className="btn join-item">Create</button>
+      </div>
     </form>
   );
 };
