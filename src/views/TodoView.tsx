@@ -1,28 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, } from 'react';
+
 import { TodoInput } from '../components/TodoInput';
 import { TodoList } from '../components/TodoList';
 import { TodoItem, FilterType } from '../types';
+import useLocalStorage from '../hooks/useLocalStorage';
 
 export const TodoView: React.FC = () => {
-  const [todos, setTodos] = useState<TodoItem[]>([]);
+  // Use useLocalStorage hook to manage todos
+  const [todos, setTodos] = useLocalStorage<TodoItem[]>('todos', []);
   const [filter, setFilter] = useState<FilterType>('All');
-  const [isInitialLoad, setIsInitialLoad] = useState(true);
-
-  // Load todos from localStorage
-  useEffect(() => {
-    const storedTodos = localStorage.getItem('todos');
-    if (storedTodos) {
-      setTodos(JSON.parse(storedTodos));
-    }
-    setIsInitialLoad(false);
-  }, []);
-
-  // Save todos to localStorage
-  useEffect(() => {
-    if (!isInitialLoad) {  // Only save to localStorage if it's not the initial load
-      localStorage.setItem('todos', JSON.stringify(todos));
-    }
-  }, [todos, isInitialLoad]);
 
   const addTodo = (task: string) => {
     const newTodo = { id: Date.now(), task, completed: false };
