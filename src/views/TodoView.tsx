@@ -6,17 +6,23 @@ import { TodoItem, FilterType } from '../types';
 export const TodoView: React.FC = () => {
   const [todos, setTodos] = useState<TodoItem[]>([]);
   const [filter, setFilter] = useState<FilterType>('All');
+  const [isInitialLoad, setIsInitialLoad] = useState(true);
 
+  // Load todos from localStorage
   useEffect(() => {
     const storedTodos = localStorage.getItem('todos');
     if (storedTodos) {
       setTodos(JSON.parse(storedTodos));
     }
+    setIsInitialLoad(false);
   }, []);
 
+  // Save todos to localStorage
   useEffect(() => {
-    localStorage.setItem('todos', JSON.stringify(todos));
-  }, [todos]);
+    if (!isInitialLoad) {  // Only save to localStorage if it's not the initial load
+      localStorage.setItem('todos', JSON.stringify(todos));
+    }
+  }, [todos, isInitialLoad]);
 
   const addTodo = (task: string) => {
     const newTodo = { id: Date.now(), task, completed: false };
