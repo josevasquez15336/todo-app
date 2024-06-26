@@ -21,6 +21,16 @@ export const TodoView: React.FC = () => {
     );
     setTodos(newTodos);
   };
+ 
+  const maxTaskCharactersLength = 180
+  const minTaskCharactersLength = 5
+  
+  const rules = [ 
+    (task: string) => task.length >= minTaskCharactersLength,  // Task must be at least 5 characters long
+    (task: string) => !task.includes(' '),  // Task must not contain spaces
+    (task: string) => task.length <= maxTaskCharactersLength // Task must be at max 180 characters long
+  ];
+  
 
   const currentTodos = todos.filter(todo => {
     if (filter === 'Active') return !todo.completed;
@@ -31,7 +41,7 @@ export const TodoView: React.FC = () => {
   return (
     <div className="container mx-auto px-4">
       <h1 className="text-4xl font-bold my-6">Todo List</h1>
-      <TodoInput addTodo={addTodo} />
+      <TodoInput addTodo={addTodo}  rules={rules}/>
       <TodoList todos={currentTodos} toggleTodo={toggleTodo} />
       <div className="flex gap-2 mt-4">
         {(['All', 'Active', 'Completed'] as FilterType[]).map(f => (
