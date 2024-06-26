@@ -1,5 +1,5 @@
 import React from 'react';
-import {TodoView} from '../src/views/TodoView'
+import { TodoView } from '../src/views/TodoView'
 import './App.css';
 
 function App() {

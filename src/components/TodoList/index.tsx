@@ -12,7 +12,7 @@ export const TodoList: React.FC<TodoListProps> = ({ todos, toggleTodo }) => {
   return (
     <div>
       {todos.map(todo => (
-        <div key={todo.id} className={`flex items-center gap-2 ${todo.completed ? 'line-through' : ''}`}>
+        <div key={todo.id} className={`flex items-center gap-2 my-4 ${todo.completed ? 'line-through' : ''}`}>
           <input type="checkbox" checked={todo.completed} onChange={() => toggleTodo(todo.id)} className="checkbox checkbox-primary" />
           <span>{todo.task}</span>
         </div>

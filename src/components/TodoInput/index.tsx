@@ -32,7 +32,7 @@ export const TodoInput: React.FC<TodoInputProps> = ({ addTodo, rules }) => {
           className={`input w-full max-w-xs input-bordered join-item ${!valid ? 'input-error' : ''}`}
           placeholder="Add new todo"
         />
-        <button type="submit" className="btn join-item" disabled={!valid}>Create</button>
+        <button onClick={handleSubmit} type="submit" className="btn join-item" disabled={!valid}>Create</button>
       </div>
     </form>
   );
